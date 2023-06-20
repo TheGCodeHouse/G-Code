@@ -48,7 +48,14 @@ export default function Registration() {
   }
 
   const postRegInfo = () => {
-    registerUser(accessCode, formData, setSubmissionError)
+    registerUser(accessCode, formData)
+      .then(() => { router.push("/login") })
+      .catch(error => {
+        console.log(error)
+        if (error.response) {
+          setSubmissionError(error.response.data.detail)
+        }
+      })
   }
 
   return (
