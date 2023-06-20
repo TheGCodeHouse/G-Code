@@ -318,23 +318,13 @@ export async function updateUser(userData) {
     axios.put(apiUrl, userData, { headers })
 }
 
-export async function registerUser(accessCode, userData, setSubmissionError) {
+export async function registerUser(accessCode, userData) {
     const apiUrl = `${baseurl}/api/join?access_code=${accessCode}`;
     const headers = {
         'accept': 'application/json',
         'Content-Type': 'application/json',
     };
-
     axios.post(apiUrl, userData, { headers })
-        .then(response => {
-            // router.push('/login')
-        })
-        .catch(error => {
-            console.log(error)
-            if (error.response) {
-                setSubmissionError(error.response.data.detail)
-            }
-        });
 }
 
 export async function getQuestions(setQuestions) {
